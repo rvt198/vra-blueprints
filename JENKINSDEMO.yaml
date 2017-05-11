@@ -1,0 +1,129 @@
+id: JENKINSDEMO
+name: JENKINS-DEMO
+description: RHEL 7.0 deployment thru JENKINS
+status: PUBLISHED
+properties:
+  _archiveDays: 14
+  _leaseDays:
+    default: 1
+    max: 365
+    min: 1
+components:
+  DeploymentNetwork:
+    type: Infrastructure.Network.Network.Existing
+    data:
+      name:
+        fixed: DeploymentNetwork
+      network_profile:
+        fixed: Deployment Network
+  JENKINS_vSphereRHEL7:
+    type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
+    data:
+      Deployment.Scope:
+        default: ''
+        required: true
+        secured: false
+        visible: true
+      Extensibility.Lifecycle.Properties.VMPSMasterWorkflow32.BuildingMachine:
+        default: '*'
+        required: false
+        secured: false
+        visible: false
+      Hostname.APP:
+        fixed: Web
+        required: false
+        secured: false
+        visible: false
+      Machine.SSH:
+        default: 'true'
+        required: false
+        secured: false
+        visible: false
+      Net.FacingOptions:
+        fixed: 'No'
+        required: false
+        secured: false
+        visible: false
+      VMware.VirtualCenter.OperatingSystem:
+        default: rhel7_64Guest
+        required: false
+        secured: false
+        visible: false
+      VirtualMachine.Admin.NameCompletion:
+        default: 'true'
+        required: false
+        secured: false
+        visible: false
+      VirtualMachine.Admin.ThinProvision:
+        default: 'true'
+        required: false
+        secured: false
+        visible: false
+      VirtualMachine.Admin.UseGuestAgent:
+        default: 'true'
+        required: false
+        secured: false
+        visible: false
+      _cluster:
+        default: 1
+        max: 2
+        min: 1
+      action:
+        fixed: FullClone
+      allow_storage_policies:
+        fixed: true
+      blueprint_type:
+        fixed: '1'
+      cpu:
+        default: 1
+        max: 4
+        min: 1
+      description: Basic deployment of RHEL 7 thru JENKINS request.
+      disks:
+      - capacity: 100
+        custom_properties: null
+        id: 1494014675327
+        initial_location: ''
+        is_clone: true
+        label: Hard disk 1
+        storage_reservation_policy: ''
+        userCreated: false
+        volumeId: 0
+      guest_customization_specification: vRA-RHELServer7
+      machine_prefix:
+        fixed:
+          id: BG-O-APP-E-
+      max_network_adapters: {}
+      max_volumes: {}
+      memory:
+        default: 2048
+        max: 32768
+        min: 2048
+      nics:
+      - address: 156.140.30.55
+        assignment_type: Static
+        id: 0
+        load_balancing: ''
+        network: ${_resource~DeploymentNetwork}
+        network_profile: Deployment Network
+      provisioning_workflow:
+        fixed:
+          id: CloneWorkflow
+          label: CloneWorkflow
+      security_groups: []
+      security_tags: []
+      source_machine:
+        fixed:
+          id: 73c14fed-61b6-4ff8-bf7d-be75853b841f
+          label: VRA-JENKINS-RHEL7-Temp
+      source_machine_name:
+        fixed: VRA-JENKINS-RHEL7-Temp
+      storage:
+        default: 100
+        max: 300
+        min: 100
+    propertyGroups:
+    - VMSnapshotPolicy1
+layout:
+  DeploymentNetwork: 1,0
+  JENKINS_vSphereRHEL7: 0,0
